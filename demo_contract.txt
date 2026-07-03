@@ -1,0 +1,235 @@
+SOFTWARE AS A SERVICE AGREEMENT
+(Master Subscription & Data Processing Contract)
+
+Agreement Date: January 15, 2025
+Effective Date: February 1, 2025
+
+================================================================================
+
+PARTIES
+
+This Software as a Service Agreement ("Agreement") is entered into between:
+
+SERVICE PROVIDER:
+OmniTech Solutions LLC, a Delaware limited liability company
+Registered Address: 1400 Innovation Drive, Suite 900, San Francisco, CA 94105
+("Provider", "Company", or "OmniTech")
+
+CLIENT / SUBSCRIBER:
+Meridian Consulting Group Pvt. Ltd., an Indian private limited company
+Registered Address: 42 MG Road, 3rd Floor, Bangalore, Karnataka 560001
+("Subscriber", "Client", or "you")
+
+Collectively referred to as the "Parties."
+
+================================================================================
+
+RECITALS
+
+WHEREAS, Provider has developed a proprietary cloud-based legal analytics platform
+known as "OmniLegal Intelligence Suite" (the "Software"); and
+
+WHEREAS, Subscriber desires to access and use the Software on a subscription basis
+subject to the terms and conditions set forth in this Agreement;
+
+NOW THEREFORE, in consideration of the mutual covenants and agreements contained
+herein, the Parties agree as follows:
+
+================================================================================
+
+SECTION 1 — DEFINITIONS
+
+1.1 "Subscription Fee" means the monthly recurring fee of USD $2,499.00 per month
+    payable by Subscriber for access to the Software.
+
+1.2 "Subscription Term" means an initial fixed period of 36 months commencing on
+    the Effective Date, with automatic renewal for successive 12-month periods.
+
+1.3 "Confidential Information" means all non-public information disclosed by either
+    Party to the other, including but not limited to technical data, trade secrets,
+    business plans, customer data, and proprietary algorithms.
+
+1.4 "User Data" means all data, documents, files, and information uploaded,
+    transmitted, or otherwise provided by Subscriber through the Software.
+
+1.5 "Intellectual Property Rights" means all patents, copyrights, trademarks,
+    trade secrets, and other proprietary rights.
+
+================================================================================
+
+SECTION 3 — FEES AND PAYMENT TERMS
+
+3.1 Subscriber shall pay the Subscription Fee of USD $2,499.00 per month in advance
+    on the first day of each calendar month.
+
+3.2 UNILATERAL FEE MODIFICATION: Provider reserves the absolute right to increase
+    the Subscription Fee at any time and for any reason, without prior notice to
+    Subscriber. Continued use of the Software after a fee increase constitutes
+    Subscriber's unconditional acceptance of the new pricing.
+
+3.3 All invoices are due within 7 days of issuance. Overdue payments shall accrue
+    compound interest at the rate of 24% per annum, compounded monthly.
+
+3.4 Provider may immediately suspend access without notice if payment is delayed
+    by even one (1) day, and may permanently delete all Subscriber data without
+    prior warning or opportunity to cure.
+
+3.5 All fees are non-refundable under any circumstances, including in cases where
+    the Software is unavailable due to Provider's fault, system outages, or
+    security breaches caused by Provider's negligence.
+
+3.6 Subscriber is responsible for all bank transfer fees, currency conversion
+    charges, and applicable taxes including GST, withholding tax, and service tax.
+
+================================================================================
+
+SECTION 4 — CONFIDENTIALITY AND DATA
+
+4.1 Subscriber acknowledges that Provider may share Subscriber's Confidential
+    Information, business data, and User Data with any third-party vendors, partners,
+    subsidiaries, or affiliates at Provider's sole discretion, without obtaining
+    Subscriber's prior consent or notifying Subscriber.
+
+4.2 Provider's obligations of confidentiality shall not apply to information that:
+    (a) becomes publicly known through no fault of Provider; or
+    (b) is required to be disclosed by law or court order; or
+    (c) Provider determines in its sole discretion should be disclosed.
+
+4.3 DATA DELETION ON TERMINATION: Upon termination of this Agreement for any reason,
+    Provider may permanently delete all User Data within 24 hours without prior
+    notice to Subscriber. Provider shall have no liability for any loss of data.
+
+4.4 GDPR AND DATA PRIVACY: The Parties acknowledge that Subscriber's data may
+    contain personal data of European Union citizens. Subscriber waives all rights
+    under GDPR and agrees that Provider shall not be subject to any data subject
+    access requests, right to erasure, or data portability requirements under
+    applicable privacy law.
+
+================================================================================
+
+SECTION 5 — WARRANTIES AND DISCLAIMER
+
+5.1 Provider makes NO warranties whatsoever, express or implied, regarding the
+    Software, including but not limited to:
+    (a) Accuracy or correctness of legal analysis;
+    (b) Fitness for any particular legal or regulatory purpose;
+    (c) Uninterrupted or error-free operation;
+    (d) Security of data stored on Provider's servers.
+
+5.2 Provider explicitly disclaims any warranty that the Software complies with
+    any applicable law, regulation, or professional standard.
+
+5.3 Subscriber agrees that it relies on the Software's output entirely at its
+    own risk and that no professional legal advice is provided.
+
+================================================================================
+
+SECTION 6 — LIMITATION OF LIABILITY
+
+6.1 ABSOLUTE LIABILITY CAP: Provider's total liability to Subscriber under this
+    Agreement shall under no circumstances exceed ONE US DOLLAR (USD $1.00),
+    regardless of the nature of the claim, whether in contract, tort, negligence,
+    strict liability, or otherwise.
+
+6.2 Provider shall not be liable for any indirect, incidental, consequential,
+    special, exemplary, or punitive damages, including but not limited to: loss of
+    profits, loss of business, data loss, loss of goodwill, reputational harm, or
+    cost of substitute services.
+
+6.3 This limitation applies even if Provider has been advised of the possibility
+    of such damages and even where Provider's actions were grossly negligent or
+    constituted willful misconduct.
+
+================================================================================
+
+SECTION 7 — INDEMNIFICATION
+
+7.1 BROAD INDEMNIFICATION: Subscriber shall indemnify, defend, and hold harmless
+    Provider, its officers, directors, employees, agents, and affiliates from and
+    against any and all claims, damages, losses, costs, and expenses (including
+    reasonable attorneys' fees) arising out of or relating to:
+    (a) Subscriber's use of the Software;
+    (b) Any breach of this Agreement by Subscriber;
+    (c) Any negligence or misconduct of Provider in providing the Software;
+    (d) Any third-party claims related to Provider's misuse of Subscriber's data;
+    (e) Any action by Provider that results in regulatory penalties against Subscriber.
+
+================================================================================
+
+SECTION 8 — TERM AND TERMINATION
+
+8.1 This Agreement shall commence on the Effective Date and continue for an initial
+    term of 36 months, automatically renewing annually thereafter.
+
+8.2 LOCK-IN PERIOD AND PENALTIES: Subscriber may not terminate this Agreement
+    during the first 24 months of the Subscription Term under any circumstances.
+    If Subscriber attempts early termination, Subscriber shall pay Provider
+    a penalty equal to the total remaining Subscription Fees for the entire
+    remaining term of the Agreement, plus an additional 40% administrative fee.
+
+8.3 Provider may terminate this Agreement immediately without cause and without
+    any refund obligation, upon providing a minimum of 2 hours prior written notice.
+
+8.4 Upon termination by Provider, Provider may retain all User Data uploaded to
+    the platform for up to 10 years for its own commercial and analytical purposes.
+
+================================================================================
+
+SECTION 9 — DISPUTE RESOLUTION AND GOVERNING LAW
+
+9.1 MANDATORY ARBITRATION: All disputes arising from this Agreement shall be
+    exclusively resolved by binding arbitration conducted in San Francisco, California,
+    under the rules of the American Arbitration Association. Subscriber expressly
+    waives the right to a jury trial and class action participation.
+
+9.2 All arbitration proceedings shall be conducted in English and shall take place
+    exclusively in San Francisco, California, USA, regardless of Subscriber's location.
+    Subscriber shall bear all travel, accommodation, and arbitration costs.
+
+9.3 Governing Law: This Agreement shall be governed by the laws of the State of
+    Delaware, USA, without regard to conflict of law principles.
+
+9.4 CLASS ACTION WAIVER: Subscriber irrevocably waives the right to bring or
+    participate in any class action, collective action, or representative proceeding
+    against Provider.
+
+================================================================================
+
+SECTION 10 — MISCELLANEOUS
+
+10.1 UNILATERAL MODIFICATION: Provider reserves the right to modify, amend, or
+     replace any term of this Agreement at any time and in its sole discretion,
+     without notice to Subscriber. Such changes shall be effective immediately upon
+     posting to Provider's website.
+
+10.2 NON-COMPETE: For a period of 5 years following termination of this Agreement,
+     Subscriber shall not, directly or indirectly, engage in, develop, market,
+     or invest in any business that competes with Provider's software products.
+
+10.3 Assignment: Provider may assign this Agreement and all rights and obligations
+     hereunder to any third party without Subscriber's consent. Subscriber may not
+     assign this Agreement without Provider's prior written consent.
+
+10.4 Entire Agreement: This Agreement constitutes the entire agreement between the
+     Parties with respect to the subject matter hereof.
+
+================================================================================
+
+IN WITNESS WHEREOF, the Parties have executed this Agreement as of the date
+first written above.
+
+OMNITECH SOLUTIONS LLC
+By: _________________________
+Name: Jonathan Hargreaves
+Title: Chief Executive Officer
+Date: January 15, 2025
+
+MERIDIAN CONSULTING GROUP PVT. LTD.
+By: _________________________
+Name: Priya Sharma
+Title: Director
+Date: January 15, 2025
+
+================================================================================
+END OF AGREEMENT
+================================================================================
