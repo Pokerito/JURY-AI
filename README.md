@@ -1,258 +1,263 @@
-<div align="center">
+<p align="center">
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
+  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis"/>
+  <img src="https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Gemini"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+</p>
 
-# ⚖️ JURY-AI
-
-### Intelligent Legal Document Analysis Platform
-
-**Powered by Retrieval-Augmented Generation · Google Gemini · ChromaDB**
-
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
-[![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_DB-orange)](https://www.trychroma.com/)
-[![Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4?logo=google)](https://deepmind.google/technologies/gemini/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-*Upload a legal document. Get an instant AI-powered risk analysis in seconds.*
-
-</div>
-
----
-
-## 🌟 What is JURY-AI?
-
-JURY-AI is a full-stack AI-powered legal intelligence platform that helps **individuals, freelancers, and small businesses** understand the risks hidden inside legal contracts — without needing an expensive lawyer.
-
-Simply upload a **PDF, DOCX, or TXT** contract and JURY-AI will:
-
-- 🧠 **Summarize** the document in plain English
-- 🔍 **Extract** key entities (parties, dates, amounts, jurisdictions)
-- ⚠️ **Identify** risky clauses (Critical / High / Medium / Low)
-- 📊 **Score** the contract's overall safety from 0–100
-- 💬 **Answer** your specific legal questions about the document
-- 📄 **Export** a professional PDF risk report
-
----
-
-## ✨ Features
-
-| # | Feature | Description |
-|---|---------|-------------|
-| 1 | 📂 **Multi-Format Upload** | Drag & drop PDF, DOCX, or TXT files |
-| 2 | 📝 **AI Document Summary** | Plain-English 2–3 sentence overview |
-| 3 | 📊 **Safety Score (0–100)** | Animated radial gauge with color coding |
-| 4 | ⚠️ **Risk Clause Detection** | Critical / High / Medium / Low severity cards |
-| 5 | 🎯 **Risk Distribution** | Visual breakdown of all clause risk levels |
-| 6 | 💬 **RAG-Powered Q&A** | Ask questions, get grounded answers from the doc |
-| 7 | 📄 **PDF Report Export** | Download a professional risk analysis report |
-| 8 | 🕓 **Document History** | Persistent analysis history in browser |
-| 9 | 🛡️ **Safer Alternatives** | AI suggests fairer clause rewrites for high-risk items |
-| 10 | 🏷️ **Named Entity Extraction** | Parties, dates, amounts & jurisdictions |
-| 11 | 📋 **Full Report Page** | Dedicated `/report/[doc_id]` with bar charts & full clause table |
+<h1 align="center">⚖️ JURY-AI</h1>
+<p align="center"><strong>AI-Powered Legal Document Intelligence Platform</strong></p>
+<p align="center">Upload a legal contract. Get an instant risk analysis with safety scoring, clause detection, entity extraction, and AI-powered Q&A — all in seconds.</p>
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-┌──────────────────────────────────────────────────────────┐
-│               CLIENT LAYER (Browser)                     │
-│   Next.js 16 + React 19 + Framer Motion + TailwindCSS   │
-│   Split-View: Document Viewer | AI Analysis Panel        │
-└─────────────────────┬────────────────────────────────────┘
-                      │  HTTP REST (JSON / FormData)
-┌─────────────────────▼────────────────────────────────────┐
-│              APPLICATION LAYER (FastAPI)                  │
-│  /api/upload  →  Parse + Chunk + Embed + Store           │
-│  /api/summary →  Document Summarization                  │
-│  /api/entities→  Named Entity Extraction                 │
-│  /api/query   →  RAG Retrieval + LLM Generation         │
-│  /api/score   →  Risk Clause Detection + Scoring         │
-└──────────┬──────────────────────────┬─────────────────────┘
-           │                          │
-  ┌────────▼────────┐      ┌──────────▼──────────┐
-  │   ChromaDB      │      │  Google Gemini API   │
-  │ (Vector Store)  │      │  gemini-embedding-2  │
-  │ Persistent      │      │  gemini-2.5-flash    │
-  │ Local Storage   │      │  (+ 2.0-flash backup)│
-  └─────────────────┘      └─────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                    JURY-AI Platform                      │
+├──────────────────────┬──────────────────────────────────┤
+│    Next.js Frontend  │       FastAPI Backend            │
+│    (Port 3000)       │       (Port 8000)                │
+│                      │                                  │
+│  ┌────────────────┐  │  ┌──────────┐  ┌──────────────┐ │
+│  │ Auth Pages     │  │  │ API v1   │  │ Middleware    │ │
+│  │ Dashboard      │──┼──│ Routes   │──│ JWT Auth     │ │
+│  │ Analysis View  │  │  │          │  │ Rate Limit   │ │
+│  │ RAG Q&A Chat   │  │  │          │  │ Idempotency  │ │
+│  └────────────────┘  │  └────┬─────┘  └──────────────┘ │
+│                      │       │                          │
+│                      │  ┌────┴─────┐                    │
+│                      │  │ Services │                    │
+│                      │  │ Auth     │  ┌──────────────┐  │
+│                      │  │ Document │──│ Gemini API   │  │
+│                      │  │ RAG      │  │ (LLM + Embed)│  │
+│                      │  │ Risk     │  └──────────────┘  │
+│                      │  │ Entity   │                    │
+│                      │  └────┬─────┘                    │
+│                      │       │                          │
+│                      │  ┌────┴───────────┐              │
+│                      │  │  Repositories  │              │
+│                      │  └──┬──────┬──────┘              │
+│                      │     │      │                     │
+│                      │  ┌──┴──┐ ┌─┴────────┐            │
+│                      │  │ PG  │ │ ChromaDB │            │
+│                      │  │ RDS │ │ (Vectors)│            │
+│                      │  └─────┘ └──────────┘            │
+└──────────────────────┴──────────────────────────────────┘
 ```
 
----
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 📄 **Document Upload** | Upload PDF, DOCX, TXT contracts with automatic text extraction |
+| 🔍 **Risk Analysis** | AI-powered clause detection with Critical/High/Medium/Low severity |
+| 📊 **Safety Score** | 0-100 safety score with interactive radial gauge visualization |
+| 🏷️ **Entity Extraction** | Automatic detection of parties, dates, amounts, jurisdictions |
+| 💬 **RAG Q&A** | Ask natural language questions about any uploaded document |
+| 📝 **AI Summary** | One-click 2-3 sentence plain-English document summaries |
+| 🔐 **JWT + RBAC** | Role-based access control (Admin, Analyst, Viewer) |
+| 🏢 **Multi-tenant** | Organization-scoped data isolation |
+| 🛡️ **Idempotency** | `X-Idempotency-Key` header prevents duplicate analysis runs |
+| ⚡ **Rate Limiting** | Token-bucket rate limiter via Redis |
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| **Frontend** | Next.js 16, React 19, Framer Motion, TailwindCSS, jsPDF |
-| **Backend** | FastAPI, Python 3.10+, Uvicorn (ASGI) |
-| **AI / LLM** | Google Gemini (`gemini-2.5-flash`, fallback `gemini-2.0-flash`) |
-| **Embeddings** | `gemini-embedding-2` (3,072 dimensions) |
-| **Vector DB** | ChromaDB (persistent local storage) |
-| **File Parsing** | PyMuPDF (PDF), python-docx (DOCX) |
+### Backend
+- **Framework**: FastAPI (Python 3.12)
+- **Database**: PostgreSQL 16 + SQLAlchemy 2.0 (async)
+- **Vector Store**: ChromaDB (per-org collections)
+- **Cache**: Redis 7 (rate limiting, idempotency, sessions)
+- **LLM**: Google Gemini 2.5-flash (with 2.0-flash fallback)
+- **Auth**: JWT (access + refresh tokens) with bcrypt password hashing
+- **Migrations**: Alembic (async-compatible)
+- **Logging**: structlog (structured JSON)
+- **Architecture**: Clean Architecture (Routes → Schemas → Services → Repositories → Models)
 
----
+### Frontend
+- **Framework**: Next.js 16 (App Router)
+- **UI**: TailwindCSS 4 + Glassmorphism design system
+- **Animations**: Framer Motion
+- **Charts**: Recharts
+- **Icons**: Lucide React
+- **State**: React Context (AuthProvider)
 
-## 🚀 Getting Started
+### Infrastructure
+- **Containerization**: Docker + Docker Compose
+- **Target Deployment**: AWS (ECS, RDS, ElastiCache, S3)
+
+## 🚀 Quick Start
 
 ### Prerequisites
+- Python 3.12+
+- Node.js 20+
+- PostgreSQL 16
+- Redis 7
+- Google Gemini API key
 
-- Python 3.10+
-- Node.js 18+
-- A [Google Gemini API Key](https://aistudio.google.com/apikey)
-
-### 1. Clone the Repository
+### Option 1: Docker Compose (Recommended)
 
 ```bash
-git clone https://github.com/pokerito/my-project.git
-cd my-project
+# Clone the repository
+git clone https://github.com/your-username/jury-ai.git
+cd jury-ai
+
+# Set your Gemini API key
+echo "GOOGLE_API_KEY=your_key_here" > .env
+
+# Start all services
+docker compose up --build
+
+# In another terminal, run migrations and seed data
+docker compose exec backend python -m alembic upgrade head
+docker compose exec backend python -m scripts.seed
 ```
 
-### 2. Set Up the Backend
+Open http://localhost:3000 and login with:
+- **Admin**: `admin@juryai.demo` / `DemoPass123!`
+- **Analyst**: `analyst@juryai.demo` / `DemoPass123!`
+- **Viewer**: `viewer@juryai.demo` / `DemoPass123!`
+
+### Option 2: Local Development
 
 ```bash
-# Create and activate a virtual environment
-python -m venv venv
-venv\Scripts\activate        # Windows
-# source venv/bin/activate   # macOS/Linux
+# ── Backend ──────────────────────────────────────────────
+cd backend
+
+# Create virtual environment
+python -m venv .venv
+.venv\Scripts\activate  # Windows
+# source .venv/bin/activate  # macOS/Linux
 
 # Install dependencies
-pip install fastapi uvicorn chromadb google-genai pymupdf python-docx python-dotenv
-```
+pip install -e ".[dev]"
 
-### 3. Configure Environment Variables
+# Copy environment template
+cp .env.example .env
+# Edit .env with your GOOGLE_API_KEY
 
-Create a `.env` file in the root directory:
+# Run migrations
+python -m alembic upgrade head
 
-```env
-GOOGLE_API_KEY=your_gemini_api_key_here
-```
+# Seed demo data
+python -m scripts.seed
 
-### 4. Set Up the Frontend
+# Start backend
+uvicorn app.main:app --reload --port 8000
 
-```bash
+# ── Frontend (new terminal) ──────────────────────────────
 cd frontend
 npm install
-```
-
-### 5. Run the Application
-
-**Option A — Use the batch launcher (Windows):**
-```bash
-START_JURY_AI.bat
-```
-
-**Option B — Run manually:**
-
-Terminal 1 (Backend):
-```bash
-python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-Terminal 2 (Frontend):
-```bash
-cd frontend
 npm run dev
 ```
-
-Open your browser at **http://localhost:3000** 🎉
-
----
 
 ## 📁 Project Structure
 
 ```
-JURY-AI/
-├── .env                          # API key (not committed)
-├── START_JURY_AI.bat             # One-click Windows launcher
-├── README.md
+jury-ai/
+├── docker-compose.yml          # Full-stack orchestration
 │
 ├── backend/
-│   ├── main.py                   # FastAPI app + route definitions
-│   ├── services/
-│   │   ├── rag_service.py        # RAG pipeline (embed, retrieve, generate, score)
-│   │   └── file_parser.py        # Multi-format document parser
-│   ├── database/
-│   │   └── chroma_client.py      # ChromaDB Singleton PersistentClient
-│   └── data/chroma/              # Persistent vector store (auto-created)
+│   ├── Dockerfile              # Multi-stage production build
+│   ├── pyproject.toml          # Python dependencies
+│   ├── alembic.ini             # Migration config
+│   ├── alembic/
+│   │   ├── env.py              # Async migration environment
+│   │   └── versions/
+│   │       └── 0001_initial_schema.py
+│   ├── scripts/
+│   │   ├── seed.py             # Demo data seeder
+│   │   └── migrate.py          # Migration runner
+│   ├── tests/
+│   │   └── test_core.py        # Unit tests (25+ tests)
+│   └── app/
+│       ├── main.py             # FastAPI app factory + /health
+│       ├── config.py           # Pydantic settings
+│       ├── dependencies.py     # DI container
+│       ├── core/
+│       │   ├── constants.py    # Enums (UserRole, RiskLevel, etc.)
+│       │   ├── exceptions.py   # Custom exception hierarchy
+│       │   └── security.py     # JWT + bcrypt utilities
+│       ├── integrations/
+│       │   ├── gemini_client.py  # Gemini LLM wrapper
+│       │   ├── chroma_client.py  # ChromaDB vector store
+│       │   ├── redis_client.py   # Async Redis pool
+│       │   └── s3_client.py      # S3/local storage
+│       ├── models/             # SQLAlchemy ORM (6 tables)
+│       ├── schemas/            # Pydantic request/response DTOs
+│       ├── repositories/       # Data access layer
+│       ├── services/           # Business logic layer
+│       ├── middleware/         # Auth, rate limit, idempotency, logging
+│       └── api/v1/            # Versioned REST endpoints
 │
 └── frontend/
-    ├── src/app/
-    │   ├── page.js               # Main dashboard (all 11 features)
-    │   ├── report/[doc_id]/
-    │   │   └── page.js           # Full report page
-    │   ├── globals.css           # Design system tokens
-    │   └── layout.js             # Root layout
-    ├── next.config.mjs
-    └── package.json
+    ├── Dockerfile              # Multi-stage Next.js build
+    ├── package.json
+    └── src/
+        ├── lib/api.js          # API client with JWT auto-refresh
+        ├── contexts/AuthContext.js
+        ├── components/
+        │   ├── Navbar.js
+        │   ├── ProtectedRoute.js
+        │   ├── SafetyGauge.js
+        │   ├── RiskClauseCard.js
+        │   └── Skeleton.js
+        └── app/
+            ├── layout.js       # Root layout with AuthProvider
+            ├── page.js         # Landing page
+            ├── login/page.js
+            ├── register/page.js
+            └── dashboard/
+                ├── page.js     # Document list + upload
+                └── [docId]/page.js  # Analysis view
 ```
 
----
+## 🔌 API Endpoints
 
-## ⚙️ How It Works
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `POST` | `/api/v1/auth/register` | ❌ | Register user + org |
+| `POST` | `/api/v1/auth/login` | ❌ | Login, get JWT tokens |
+| `POST` | `/api/v1/auth/refresh` | ❌ | Refresh access token |
+| `GET` | `/api/v1/auth/me` | ✅ | Get current user |
+| `POST` | `/api/v1/documents/upload` | ✅ | Upload a document |
+| `GET` | `/api/v1/documents` | ✅ | List documents (paginated) |
+| `GET` | `/api/v1/documents/:id` | ✅ | Get document details |
+| `DELETE` | `/api/v1/documents/:id` | ✅ | Soft-delete document |
+| `POST` | `/api/v1/documents/:id/analyze` | ✅ | Trigger risk analysis |
+| `GET` | `/api/v1/documents/:id/summary` | ✅ | Get AI summary |
+| `GET` | `/api/v1/documents/:id/entities` | ✅ | Extract entities |
+| `GET` | `/api/v1/documents/:id/risk-score` | ✅ | Get safety score + clauses |
+| `POST` | `/api/v1/documents/:id/query` | ✅ | RAG Q&A |
+| `GET` | `/health` | ❌ | System health check |
 
-### RAG Pipeline
+Interactive docs: http://localhost:8000/docs
 
-1. **Upload** → File is parsed (PDF/DOCX/TXT) and split into 1,000-character chunks
-2. **Embed** → Each chunk is embedded via `gemini-embedding-2` (3,072-dim vectors)
-3. **Store** → Vectors and text chunks are saved to ChromaDB with metadata
-4. **Query** → User question is embedded, top-3 similar chunks are retrieved
-5. **Generate** → Gemini generates an answer grounded *only* in retrieved context
+## 🧪 Testing
 
-### Risk Scoring Algorithm
+```bash
+cd backend
+pytest tests/ -v
+```
 
-| Risk Level | Points Deducted |
-|-----------|----------------|
-| 🔴 Critical | −25 per clause |
-| 🟠 High | −15 per clause |
-| 🟡 Medium | −5 per clause |
-| 🟢 Low | 0 |
-
-Starting from **100**, the final score is floored at **0**.
-
----
-
-## 🧑‍💻 Team
+## 👥 Team
 
 | Name | Role |
 |------|------|
-| Ms. Vijaylaxmi Inamdar | Project Guide / Supervisor |
-| Gaurav Jha | Full-Stack Developer |
-| Kalash Verma | Backend & AI Integration |
-| Komal Raj | Frontend & UI/UX |
-| Krish Patel | RAG Pipeline & Testing |
-
-**Department of Computer Science and Engineering**
-Dayananda Sagar Academy of Technology and Management (DSATM), Bengaluru
-
----
-
-## 📋 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/upload` | Upload and embed a document |
-| `POST` | `/api/summary` | Generate a plain-English summary |
-| `POST` | `/api/entities` | Extract named entities (JSON) |
-| `POST` | `/api/query` | RAG-powered legal Q&A |
-| `POST` | `/api/score` | Risk clause detection + safety score |
-| `GET` | `/` | Health check |
-
----
-
-## ⚠️ Disclaimer
-
-JURY-AI is an **AI-assisted tool** intended to help users understand legal documents more easily. It is **not a substitute for professional legal advice**. Always consult a qualified attorney for important legal matters.
-
----
+| **Gaurav Jha** | Lead Developer, System Architect |
+| **Kalash Verma** | Backend Developer |
+| **Komal Raj** | Frontend Developer |
+| **Krish Patel** | ML/AI Integration |
 
 ## 📜 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is developed as a final-year capstone project at DSATM, Bengaluru.
 
 ---
 
-<div align="center">
-
-Made with ❤️ by Team JURY-AI · DSATM Bengaluru
-
-</div>
+<p align="center">
+  <strong>Built with ❤️ using FastAPI, Next.js, and Google Gemini</strong>
+</p>

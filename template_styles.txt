@@ -1,0 +1,26 @@
+﻿Normal: Normal
+Heading1: heading 1
+Heading2: heading 2
+Heading3: heading 3
+Heading4: heading 4
+Heading5: heading 5
+Abstract: Abstract
+Affiliation: Affiliation
+Author: Author
+BodyText: Body Text
+bulletlist: bullet list
+equation: equation
+figurecaption: figure caption
+footnote: footnote
+papersubtitle: paper subtitle
+papertitle: paper title
+references: references
+sponsors: sponsors
+tablecolhead: table col head
+tablecolsubhead: table col subhead
+tablecopy: table copy
+tablefootnote: table footnote
+tablehead: table head
+Keywords: Keywords
+Header: header
+Footer: footer

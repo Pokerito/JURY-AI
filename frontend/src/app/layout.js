@@ -1,4 +1,7 @@
+"use client"
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,22 +14,36 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "JURY-AI | Legal Intelligence Platform",
-  description: "AI-powered legal document risk analysis using Retrieval-Augmented Generation and Google Gemini LLMs. Upload contracts, detect risky clauses, and get instant legal insights.",
-  keywords: "legal AI, contract analysis, risk scoring, RAG, document intelligence",
-  authors: [
-    { name: "Gaurav Jha" },
-    { name: "Kalash Verma" },
-    { name: "Komal Raj" },
-    { name: "Krish Patel" },
-  ],
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <head>
+        <title>JURY-AI | Legal Intelligence Platform</title>
+        <meta name="description" content="AI-powered legal document risk analysis using RAG and Google Gemini." />
+      </head>
+      <body suppressHydrationWarning>
+        <AuthProvider>
+          {children}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#1E293B',
+                color: '#E2E8F0',
+                border: '1px solid rgba(255,255,255,0.1)',
+                backdropFilter: 'blur(12px)',
+              },
+              success: {
+                iconTheme: { primary: '#10B981', secondary: '#020617' },
+              },
+              error: {
+                iconTheme: { primary: '#F43F5E', secondary: '#020617' },
+              },
+            }}
+          />
+        </AuthProvider>
+      </body>
     </html>
   );
 }
