@@ -101,11 +101,16 @@ export default function DocumentDetailPage() {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatMessages]);
 
+  const getSelectedModel = () => {
+    return typeof window !== 'undefined' ? (localStorage.getItem('jury_ai_selected_model') || 'gemini-2.5-flash') : 'gemini-2.5-flash';
+  };
+
   const handleAnalyze = async () => {
     setAnalyzing(true);
+    const chosenModel = getSelectedModel();
     try {
-      await api.triggerAnalysis(docId);
-      toast.success("Analysis complete!");
+      await api.triggerAnalysis(docId, chosenModel);
+      toast.success(`Analysis complete (${chosenModel})!`);
       await fetchAllAnalysis();
     } catch (error) {
       console.error(error);
@@ -125,7 +130,8 @@ export default function DocumentDetailPage() {
     setChatLoading(true);
 
     try {
-      const response = await api.queryDocument(docId, userMessage);
+      const chosenModel = getSelectedModel();
+      const response = await api.queryDocument(docId, userMessage, chosenModel);
       setChatMessages(prev => [...prev, { role: 'assistant', content: response.answer || response }]);
     } catch (error) {
       toast.error("Failed to get answer");
@@ -210,8 +216,30 @@ export default function DocumentDetailPage() {
                 <span>Uploaded {new Date(doc?.created_at || Date.now()).toLocaleDateString()}</span>
               </div>
             </div>
-            <div>
+            <div className="flex items-center gap-3">
               <StatusBadge status={doc?.status} />
+              {doc?.status === 'analyzed' && (
+                <button
+                  onClick={() => {
+                    const reportPayload = {
+                      doc_id: docId,
+                      filename: doc?.filename || 'Document',
+                      score: riskData?.score ?? 85,
+                      all_clauses: riskData?.all_clauses || [],
+                      summary: summary?.summary || summary || '',
+                      entities: entities || {}
+                    };
+                    try {
+                      localStorage.setItem(`jury_report_${docId}`, JSON.stringify(reportPayload));
+                    } catch {}
+                    router.push(`/report/${docId}`);
+                  }}
+                  className="bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/30 text-cyber-cyan px-4 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+                >
+                  <FileText size={16} />
+                  <span>Full Audit Report & PDF</span>
+                </button>
+              )}
             </div>
           </div>
 

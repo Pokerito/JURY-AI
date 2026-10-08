@@ -1,18 +1,19 @@
 "use client";
 
 import { useAuth } from '@/contexts/AuthContext';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
 import { useEffect } from 'react';
 
 export default function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
-      redirect('/login');
+      router.replace('/login');
     }
-  }, [loading, isAuthenticated]);
+  }, [loading, isAuthenticated, router]);
 
   if (loading) {
     return (

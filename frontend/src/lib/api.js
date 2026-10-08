@@ -64,12 +64,25 @@ class ApiClient {
   getDocument(docId) { return this.request(`/api/v1/documents/${docId}`); }
   deleteDocument(docId) { return this.request(`/api/v1/documents/${docId}`, { method: 'DELETE' }); }
 
+  // Models
+  getModels() { return this.request('/api/v1/models'); }
+
   // Analysis
-  triggerAnalysis(docId) { return this.request(`/api/v1/documents/${docId}/analyze`, { method: 'POST', headers: { 'X-Idempotency-Key': crypto.randomUUID() } }); }
-  getSummary(docId) { return this.request(`/api/v1/documents/${docId}/summary`); }
-  getEntities(docId) { return this.request(`/api/v1/documents/${docId}/entities`); }
-  getRiskScore(docId) { return this.request(`/api/v1/documents/${docId}/risk-score`); }
-  queryDocument(docId, question) { return this.request(`/api/v1/documents/${docId}/query`, { method: 'POST', body: JSON.stringify({ question }) }); }
+  triggerAnalysis(docId, model = 'gemini-2.5-flash') { 
+    return this.request(`/api/v1/documents/${docId}/analyze?model=${encodeURIComponent(model)}`, { 
+      method: 'POST', 
+      headers: { 'X-Idempotency-Key': crypto.randomUUID() } 
+    }); 
+  }
+  getSummary(docId, model = 'gemini-2.5-flash') { return this.request(`/api/v1/documents/${docId}/summary?model=${encodeURIComponent(model)}`); }
+  getEntities(docId, model = 'gemini-2.5-flash') { return this.request(`/api/v1/documents/${docId}/entities?model=${encodeURIComponent(model)}`); }
+  getRiskScore(docId, model = 'gemini-2.5-flash') { return this.request(`/api/v1/documents/${docId}/risk-score?model=${encodeURIComponent(model)}`); }
+  queryDocument(docId, question, model = 'gemini-2.5-flash') { 
+    return this.request(`/api/v1/documents/${docId}/query?model=${encodeURIComponent(model)}`, { 
+      method: 'POST', 
+      body: JSON.stringify({ question }) 
+    }); 
+  }
 }
 
 export const api = new ApiClient();

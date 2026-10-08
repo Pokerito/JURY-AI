@@ -16,8 +16,33 @@ export default function ReportPage() {
   useEffect(() => {
     try {
       const stored = localStorage.getItem(`jury_report_${doc_id}`)
-      if (stored) setData(JSON.parse(stored))
+      if (stored) {
+        setData(JSON.parse(stored))
+        return
+      }
     } catch { }
+
+    // API Fallback: fetch directly from backend if not in localStorage
+    if (doc_id) {
+      import('@/lib/api').then(({ api }) => {
+        api.getDocument(doc_id).then(doc => {
+          if (doc) {
+            const reportPayload = {
+              doc_id: doc.id,
+              filename: doc.filename,
+              score: doc.risk_score?.score ?? 85,
+              all_clauses: doc.risk_score?.all_clauses || [],
+              summary: doc.summary?.summary || doc.summary || 'Summary unavailable',
+              entities: doc.entities || { parties: [], dates: [], amounts: [], jurisdictions: [] }
+            }
+            setData(reportPayload)
+            try {
+              localStorage.setItem(`jury_report_${doc_id}`, JSON.stringify(reportPayload))
+            } catch {}
+          }
+        }).catch(err => console.error('Failed to load report from API:', err))
+      })
+    }
   }, [doc_id])
 
   if (!data) {

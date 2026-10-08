@@ -3,6 +3,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { LogOut, Scale, Menu } from 'lucide-react';
 import Link from 'next/link';
+import ModelSelector from './ModelSelector';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -30,23 +31,26 @@ export default function Navbar() {
             </Link>
           </div>
           
-          {user && (
-            <div className="flex items-center space-x-4">
-              <div className="hidden sm:flex items-center space-x-3">
-                <span className="text-sm font-medium text-gray-200">{user.full_name}</span>
-                <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${getRoleBadgeColor(user.role)}`}>
-                  {user.role || 'user'}
-                </span>
-              </div>
-              <button
-                onClick={logout}
-                className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center"
-                title="Logout"
-              >
-                <LogOut className="h-5 w-5" />
-              </button>
-            </div>
-          )}
+          <div className="flex items-center space-x-4">
+            <ModelSelector />
+            {user && (
+              <>
+                <div className="hidden sm:flex items-center space-x-3">
+                  <span className="text-sm font-medium text-gray-200">{user.full_name}</span>
+                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${getRoleBadgeColor(user.role)}`}>
+                    {user.role || 'user'}
+                  </span>
+                </div>
+                <button
+                  onClick={logout}
+                  className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center"
+                  title="Logout"
+                >
+                  <LogOut className="h-5 w-5" />
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </nav>
