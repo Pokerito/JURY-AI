@@ -64,10 +64,13 @@ def init_db():
 def seed_admins():
     admin_team = [
         {"name": "Gaurav Jha", "email": "gjha5757@gmail.com", "role": "admin", "org": "DSATM CSE (Lead)"},
-        {"name": "Gaurav", "email": "gaurav@jury.ai", "role": "admin", "org": "DSATM CSE (Lead)"},
-        {"name": "Kalash Verma", "email": "kalash@jury.ai", "role": "admin", "org": "DSATM CSE (Backend & AI)"},
-        {"name": "Krish Patel", "email": "krish@jury.ai", "role": "admin", "org": "DSATM CSE (RAG Pipeline)"},
-        {"name": "Komal Raj", "email": "komal@jury.ai", "role": "admin", "org": "DSATM CSE (Frontend & UI)"},
+        {"name": "Kalash Verma", "email": "kalashkumarverma72@gmail.com", "role": "admin", "org": "DSATM CSE (Backend & AI)"},
+        {"name": "Krish Patel", "email": "mr.kpatel3008@gmail.com", "role": "admin", "org": "DSATM CSE (RAG Pipeline)"},
+        {"name": "Komal Raj", "email": "sjckomalraj26@gmail.com", "role": "admin", "org": "DSATM CSE (Frontend & UI)"},
+        # Aliases for convenience
+        {"name": "Kalash", "email": "kalash@jury.ai", "role": "admin", "org": "DSATM CSE (Backend & AI)"},
+        {"name": "Krish", "email": "krish@jury.ai", "role": "admin", "org": "DSATM CSE (RAG Pipeline)"},
+        {"name": "Komal", "email": "komal@jury.ai", "role": "admin", "org": "DSATM CSE (Frontend & UI)"},
     ]
     for admin in admin_team:
         try:
@@ -78,6 +81,8 @@ def seed_admins():
                 org_name=admin["org"],
                 role=admin["role"]
             )
+        except Exception:
+            pass
         except Exception:
             pass
 
