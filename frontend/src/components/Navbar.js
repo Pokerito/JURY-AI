@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from '@/contexts/AuthContext';
-import { LogOut, Scale, Menu } from 'lucide-react';
+import { LogOut, Scale, FileText, History, Settings } from 'lucide-react';
 import Link from 'next/link';
 import ModelSelector from './ModelSelector';
 
@@ -24,11 +24,37 @@ export default function Navbar() {
     <nav className="sticky top-0 z-40 w-full bg-midnight/60 backdrop-blur-xl border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-6">
             <Link href="/dashboard" className="flex items-center space-x-2">
               <Scale className="h-6 w-6 text-cyber-cyan" />
               <span className="text-xl font-bold text-white tracking-widest hidden sm:block">JURY-AI</span>
             </Link>
+
+            {user && (
+              <div className="hidden md:flex items-center space-x-1">
+                <Link
+                  href="/dashboard"
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1.5"
+                >
+                  <FileText size={14} className="text-cyber-cyan" />
+                  Contracts
+                </Link>
+                <Link
+                  href="/dashboard/history"
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1.5"
+                >
+                  <History size={14} className="text-cyber-yellow" />
+                  Audit History
+                </Link>
+                <Link
+                  href="/dashboard/settings"
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1.5"
+                >
+                  <Settings size={14} className="text-purple-400" />
+                  Settings & Profile
+                </Link>
+              </div>
+            )}
           </div>
           
           <div className="flex items-center space-x-4">

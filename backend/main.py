@@ -35,6 +35,14 @@ class LoginRequest(BaseModel):
 class RefreshRequest(BaseModel):
     refresh_token: str
 
+class ChangePasswordRequest(BaseModel):
+    current_password: Optional[str] = None
+    new_password: str
+
+class UpdateProfileRequest(BaseModel):
+    full_name: str
+    org_name: str
+
 class QueryRequest(BaseModel):
     question: str
 
@@ -101,6 +109,20 @@ async def refresh_token(req: RefreshRequest):
     if not tokens:
         raise HTTPException(status_code=401, detail="Invalid refresh token")
     return tokens
+
+@app.post("/api/v1/auth/change-password")
+async def change_password(req: ChangePasswordRequest, current_user: dict = Depends(get_current_user)):
+    if len(req.new_password) < 6:
+        raise HTTPException(status_code=400, detail="New password must be at least 6 characters")
+    success = db.update_user_password(current_user["id"], req.new_password, req.current_password)
+    if not success:
+        raise HTTPException(status_code=400, detail="Incorrect current password")
+    return {"message": "Password updated successfully"}
+
+@app.put("/api/v1/auth/profile")
+async def update_profile(req: UpdateProfileRequest, current_user: dict = Depends(get_current_user)):
+    updated = db.update_user_profile(current_user["id"], req.full_name, req.org_name)
+    return {"message": "Profile updated successfully", "user": updated}
 
 # ── V1 Document Endpoints ────────────────────────────────────────────────────
 @app.post("/api/v1/documents/upload")

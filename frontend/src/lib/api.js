@@ -59,6 +59,18 @@ class ApiClient {
   login(email, password) { return this.request('/api/v1/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) }); }
   register(data) { return this.request('/api/v1/auth/register', { method: 'POST', body: JSON.stringify(data) }); }
   getMe() { return this.request('/api/v1/auth/me'); }
+  changePassword(new_password, current_password = null) {
+    return this.request('/api/v1/auth/change-password', {
+      method: 'POST',
+      body: JSON.stringify({ new_password, current_password })
+    });
+  }
+  updateProfile(full_name, org_name) {
+    return this.request('/api/v1/auth/profile', {
+      method: 'PUT',
+      body: JSON.stringify({ full_name, org_name })
+    });
+  }
 
   // Documents
   uploadDocument(file) { const fd = new FormData(); fd.append('file', file); return this.request('/api/v1/documents/upload', { method: 'POST', body: fd }); }
