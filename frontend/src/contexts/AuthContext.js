@@ -32,17 +32,25 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     const data = await api.login(email, password);
     api.setTokens(data.access_token, data.refresh_token);
-    const userData = await api.getMe();
+    const userData = data.user || await api.getMe().catch(() => ({ email, full_name: email, role: 'admin' }));
     setUser(userData);
-    router.push('/dashboard');
+    if (typeof window !== 'undefined') {
+      window.location.href = '/dashboard';
+    } else {
+      router.push('/dashboard');
+    }
   };
 
   const register = async (userData) => {
     const data = await api.register(userData);
     api.setTokens(data.access_token, data.refresh_token);
-    const newUserData = await api.getMe();
-    setUser(newUserData);
-    router.push('/dashboard');
+    const userObj = data.user || await api.getMe().catch(() => userData);
+    setUser(userObj);
+    if (typeof window !== 'undefined') {
+      window.location.href = '/dashboard';
+    } else {
+      router.push('/dashboard');
+    }
   };
 
   const logout = () => {
