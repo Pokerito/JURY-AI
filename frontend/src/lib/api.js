@@ -1,4 +1,5 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_BASE = rawApiUrl.replace(/\/+$/, '');
 
 class ApiClient {
   constructor() {
@@ -17,7 +18,8 @@ class ApiClient {
     // Remove Content-Type for FormData
     if (options.body instanceof FormData) delete headers['Content-Type'];
 
-    const res = await fetch(`${this.baseUrl}${path}`, { ...options, headers });
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    const res = await fetch(`${this.baseUrl}${cleanPath}`, { ...options, headers });
     
     // Auto-refresh on 401
     if (res.status === 401 && !options._retried) {
