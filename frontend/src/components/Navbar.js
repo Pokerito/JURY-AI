@@ -40,14 +40,14 @@ export default function Navbar() {
                   Contracts
                 </Link>
                 <Link
-                  href="/dashboard/history"
+                  href="/history"
                   className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1.5"
                 >
                   <History size={14} className="text-cyber-yellow" />
                   Audit History
                 </Link>
                 <Link
-                  href="/dashboard/settings"
+                  href="/settings"
                   className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1.5"
                 >
                   <Settings size={14} className="text-purple-400" />

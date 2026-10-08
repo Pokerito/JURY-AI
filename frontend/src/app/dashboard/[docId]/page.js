@@ -45,6 +45,12 @@ export default function DocumentDetailPage() {
   const chatEndRef = useRef(null);
 
   const fetchDocumentData = async () => {
+    if (!docId || docId === 'settings' || docId === 'history') {
+      if (docId === 'settings' || docId === 'history') {
+        router.replace(`/${docId}`);
+      }
+      return;
+    }
     setLoading(true);
     try {
       const docData = await api.getDocument(docId);
