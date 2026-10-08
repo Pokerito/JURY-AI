@@ -13,6 +13,9 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
+def hash_password(password: str) -> str:
+    return hashlib.sha256(password.encode('utf-8')).hexdigest()
+
 def init_db():
     with get_db() as conn:
         conn.executescript("""
@@ -22,6 +25,7 @@ def init_db():
                 password_hash TEXT NOT NULL,
                 full_name TEXT,
                 org_name TEXT,
+                role TEXT DEFAULT 'analyst',
                 created_at TEXT NOT NULL
             );
 
@@ -46,11 +50,38 @@ def init_db():
                 created_at TEXT NOT NULL
             );
         """)
+        
+        # Ensure role column exists if upgrading an existing database
+        try:
+            conn.execute("ALTER TABLE users ADD COLUMN role TEXT DEFAULT 'analyst'")
+            conn.commit()
+        except sqlite3.OperationalError:
+            pass # already exists
 
-def hash_password(password: str) -> str:
-    return hashlib.sha256(password.encode('utf-8')).hexdigest()
+    # Pre-seed the 4 Project Admins
+    seed_admins()
 
-def create_user(email: str, password: str, full_name: str = "", org_name: str = "") -> dict:
+def seed_admins():
+    admin_team = [
+        {"name": "Gaurav Jha", "email": "gjha5757@gmail.com", "role": "admin", "org": "DSATM CSE (Lead)"},
+        {"name": "Gaurav", "email": "gaurav@jury.ai", "role": "admin", "org": "DSATM CSE (Lead)"},
+        {"name": "Kalash Verma", "email": "kalash@jury.ai", "role": "admin", "org": "DSATM CSE (Backend & AI)"},
+        {"name": "Krish Patel", "email": "krish@jury.ai", "role": "admin", "org": "DSATM CSE (RAG Pipeline)"},
+        {"name": "Komal Raj", "email": "komal@jury.ai", "role": "admin", "org": "DSATM CSE (Frontend & UI)"},
+    ]
+    for admin in admin_team:
+        try:
+            create_user(
+                email=admin["email"],
+                password="password123",
+                full_name=admin["name"],
+                org_name=admin["org"],
+                role=admin["role"]
+            )
+        except Exception:
+            pass
+
+def create_user(email: str, password: str, full_name: str = "", org_name: str = "", role: str = "analyst") -> dict:
     pw_hash = hash_password(password)
     now = datetime.utcnow().isoformat()
     clean_email = email.strip().lower()
@@ -59,24 +90,26 @@ def create_user(email: str, password: str, full_name: str = "", org_name: str = 
     
     with get_db() as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT id FROM users WHERE LOWER(email) = ?", (clean_email,))
+        cursor.execute("SELECT id, role FROM users WHERE LOWER(email) = ?", (clean_email,))
         existing = cursor.fetchone()
         if existing:
             user_id = existing["id"]
+            # Preserve existing admin role if already admin
+            user_role = existing["role"] if existing["role"] == "admin" else role
             cursor.execute(
-                "UPDATE users SET password_hash = ?, full_name = ?, org_name = ? WHERE id = ?",
-                (pw_hash, clean_name, clean_org, user_id)
+                "UPDATE users SET password_hash = ?, full_name = ?, org_name = ?, role = ? WHERE id = ?",
+                (pw_hash, clean_name, clean_org, user_role, user_id)
             )
             conn.commit()
-            return {"id": user_id, "email": clean_email, "full_name": clean_name, "org_name": clean_org, "created_at": now}
+            return {"id": user_id, "email": clean_email, "full_name": clean_name, "org_name": clean_org, "role": user_role, "created_at": now}
 
         user_id = secrets.token_hex(16)
         cursor.execute(
-            "INSERT INTO users (id, email, password_hash, full_name, org_name, created_at) VALUES (?, ?, ?, ?, ?, ?)",
-            (user_id, clean_email, pw_hash, clean_name, clean_org, now)
+            "INSERT INTO users (id, email, password_hash, full_name, org_name, role, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (user_id, clean_email, pw_hash, clean_name, clean_org, role, now)
         )
         conn.commit()
-    return {"id": user_id, "email": clean_email, "full_name": clean_name, "org_name": clean_org, "created_at": now}
+    return {"id": user_id, "email": clean_email, "full_name": clean_name, "org_name": clean_org, "role": role, "created_at": now}
 
 def authenticate_user(email_or_name: str, password: str):
     pw_hash = hash_password(password)
@@ -85,7 +118,7 @@ def authenticate_user(email_or_name: str, password: str):
         cursor = conn.cursor()
         # 1. Exact match by email or name with password hash
         cursor.execute("""
-            SELECT id, email, full_name, org_name, created_at 
+            SELECT id, email, full_name, org_name, role, created_at 
             FROM users 
             WHERE (LOWER(email) = ? OR LOWER(full_name) = ?) AND password_hash = ?
         """, (ident, ident, pw_hash))
@@ -96,7 +129,7 @@ def authenticate_user(email_or_name: str, password: str):
         # 2. Master demo password fallback for review convenience
         if password in ["password123", "password", "admin123"]:
             cursor.execute("""
-                SELECT id, email, full_name, org_name, created_at 
+                SELECT id, email, full_name, org_name, role, created_at 
                 FROM users 
                 WHERE LOWER(email) = ? OR LOWER(full_name) = ?
             """, (ident, ident))
@@ -122,7 +155,7 @@ def get_user_by_token(token: str):
     with get_db() as conn:
         cursor = conn.cursor()
         cursor.execute("""
-            SELECT u.id, u.email, u.full_name, u.org_name, u.created_at 
+            SELECT u.id, u.email, u.full_name, u.org_name, u.role, u.created_at 
             FROM users u
             JOIN tokens t ON u.id = t.user_id
             WHERE t.token = ? AND t.token_type = 'access'
