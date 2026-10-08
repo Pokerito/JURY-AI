@@ -10,6 +10,7 @@ export default function RiskClauseCard({
   safer_alternative 
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const colors = {
     Critical: { border: "border-cyber-red", bg: "bg-cyber-red/10", text: "text-cyber-red" },
@@ -55,11 +56,26 @@ export default function RiskClauseCard({
                   exit={{ opacity: 0, height: 0 }}
                   className="overflow-hidden mt-3"
                 >
-                  <div className="p-3 rounded bg-cyber-green/5 border border-cyber-green/20 text-sm text-slate-200">
-                    <div className="flex items-center gap-2 text-cyber-green font-medium mb-1">
-                      <CheckCircle size={14} /> Recommended Revision
+                  <div className="p-3 rounded-lg bg-cyber-green/5 border border-cyber-green/20 text-sm text-slate-200">
+                    <div className="flex items-center justify-between gap-2 text-cyber-green font-medium mb-2">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle size={14} /> Recommended Fair Revision
+                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigator.clipboard?.writeText(safer_alternative);
+                          setCopied(true);
+                          setTimeout(() => setCopied(false), 2000);
+                        }}
+                        className="px-2 py-0.5 rounded bg-cyber-green/10 hover:bg-cyber-green/20 border border-cyber-green/30 text-cyber-green text-xs font-mono transition-colors flex items-center gap-1"
+                      >
+                        {copied ? "✓ Copied" : "Copy Clause"}
+                      </button>
                     </div>
-                    {safer_alternative}
+                    <p className="font-mono text-xs text-slate-300 bg-black/30 p-2.5 rounded border border-white/5 leading-relaxed">
+                      {safer_alternative}
+                    </p>
                   </div>
                 </motion.div>
               )}

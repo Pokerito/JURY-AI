@@ -8,13 +8,14 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import Navbar from "@/components/Navbar";
 import { Skeleton } from "@/components/Skeleton";
 import toast from "react-hot-toast";
-import { UploadCloud, FileText, Trash2, ChevronRight, X, Loader2 } from "lucide-react";
+import { UploadCloud, FileText, Trash2, ChevronRight, X, Loader2, Search } from "lucide-react";
 
 export default function DashboardPage() {
   const router = useRouter();
   const { user } = useAuth();
   
   const [documents, setDocuments] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({ total: 0, analyzed: 0, avgScore: 0 });
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
@@ -145,6 +146,23 @@ export default function DashboardPage() {
             </div>
           </div>
 
+          {/* Search Bar */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
+            <div className="relative w-full sm:w-72">
+              <input
+                type="text"
+                placeholder="Search contracts by name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full bg-midnight/80 border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-200 focus:border-cyber-cyan focus:outline-none"
+              />
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+            </div>
+            <div className="text-xs text-slate-400">
+              Showing {documents.filter(d => (d.filename || '').toLowerCase().includes(searchTerm.toLowerCase())).length} of {documents.length} contracts
+            </div>
+          </div>
+
           {/* Documents Table */}
           <div className="glass-panel rounded-xl overflow-hidden bg-midnight/60 backdrop-blur-xl border border-white/5">
             <div className="overflow-x-auto">
@@ -169,17 +187,17 @@ export default function DashboardPage() {
                         <td className="px-6 py-4 flex justify-end"><Skeleton className="h-8 w-8 rounded-full" /></td>
                       </tr>
                     ))
-                  ) : documents.length === 0 ? (
+                  ) : documents.filter(d => (d.filename || '').toLowerCase().includes(searchTerm.toLowerCase())).length === 0 ? (
                     <tr>
                       <td colSpan="5" className="px-6 py-12 text-center">
                         <div className="flex flex-col items-center justify-center text-slate-400">
                           <UploadCloud size={48} className="mb-4 opacity-50" />
-                          <p className="text-lg">No documents yet. Upload your first contract.</p>
+                          <p className="text-lg">No matching contracts found.</p>
                         </div>
                       </td>
                     </tr>
                   ) : (
-                    documents.map((doc) => (
+                    documents.filter(d => (d.filename || '').toLowerCase().includes(searchTerm.toLowerCase())).map((doc) => (
                       <tr 
                         key={doc.id} 
                         onClick={() => router.push(`/dashboard/${doc.id}`)}

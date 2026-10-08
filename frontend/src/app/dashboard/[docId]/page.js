@@ -475,6 +475,25 @@ export default function DocumentDetailPage() {
                     <div ref={chatEndRef} />
                   </div>
 
+                  {/* Quick Legal Prompts */}
+                  <div className="px-4 py-2 border-t border-white/5 flex flex-wrap gap-1.5 bg-black/30">
+                    {[
+                      "What is the liability cap?",
+                      "Are there termination penalties?",
+                      "Is there a non-compete clause?",
+                      "What are the payment terms?"
+                    ].map((q, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setChatInput(q)}
+                        className="text-[11px] bg-white/5 hover:bg-cyber-cyan/15 hover:text-cyber-cyan hover:border-cyber-cyan/30 text-slate-400 border border-white/10 rounded-full px-2.5 py-1 transition-all"
+                      >
+                        💡 {q}
+                      </button>
+                    ))}
+                  </div>
+
                   <form onSubmit={handleChatSubmit} className="p-4 border-t border-white/10 flex gap-2">
                     <input 
                       type="text" 

@@ -35,11 +35,16 @@ export default function Navbar() {
             <ModelSelector />
             {user && (
               <>
-                <div className="hidden sm:flex items-center space-x-3">
+                <div className="hidden sm:flex items-center space-x-2">
                   <span className="text-sm font-medium text-gray-200">{user.full_name}</span>
-                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${getRoleBadgeColor(user.role)}`}>
-                    {user.role || 'user'}
+                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold tracking-wider border ${getRoleBadgeColor(user.role)}`}>
+                    {(user.role || 'user').toUpperCase()}
                   </span>
+                  {user.org_name && (
+                    <span className="hidden md:inline-block text-[11px] text-slate-400 border border-white/10 bg-white/5 px-2 py-0.5 rounded font-mono">
+                      {user.org_name}
+                    </span>
+                  )}
                 </div>
                 <button
                   onClick={logout}
