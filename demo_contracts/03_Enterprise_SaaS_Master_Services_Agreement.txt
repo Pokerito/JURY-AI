@@ -1,0 +1,21 @@
+ENTERPRISE CLOUD SAAS MASTER SERVICES AGREEMENT
+
+This Master Services Agreement ("MSA") is entered into as of October 3, 2024, by Nexus AI Platforms LLC ("Vendor") and Global Retail Logistics LLC ("Customer").
+
+1. SUBSCRIPTION SERVICES
+Vendor grants Customer a non-exclusive, non-transferable enterprise subscription to access Vendor's cloud-based automated inventory forecasting platform.
+
+2. FEES AND UNILATERAL PRICE ESCALATION
+Customer shall pay an initial annual subscription fee of $48,000 USD. This Agreement automatically renews for successive 12-month periods. Vendor reserves the unilateral right to increase subscription fees by up to twenty-five percent (25%) upon each renewal period.
+
+3. DISCLAIMER OF WARRANTIES
+THE PLATFORM AND SERVICES ARE PROVIDED STRICTLY "AS-IS" AND "AS-AVAILABLE". VENDOR DISCLAIMS ALL WARRANTIES, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+4. SEVERE LIMITATION OF LIABILITY
+IN NO EVENT SHALL VENDOR'S AGGREGATE LIABILITY ARISING OUT OF SYSTEM DOWNTIME, DATA LOSS, OR BREACH EXCEED THE FEES ACTUALLY PAID BY CUSTOMER TO VENDOR IN THE ONE (1) MONTH IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO LIABILITY.
+
+5. CUSTOMER DATA SOVEREIGNTY
+All raw telemetry and inventory records uploaded by Customer remain Customer's sole property. Vendor may use anonymized aggregate metadata for system optimization.
+
+6. GOVERNING LAW
+Governed by the laws of California, with disputes resolved via binding arbitration in San Francisco.

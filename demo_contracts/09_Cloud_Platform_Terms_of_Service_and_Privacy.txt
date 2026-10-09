@@ -1,0 +1,15 @@
+CLOUD PLATFORM DEVELOPER TERMS OF SERVICE & EULA
+
+These Terms of Service ("Terms") are effective October 8, 2024, and govern access to TensorCompute AI Cloud ("Platform").
+
+1. ACCEPTANCE & UNILATERAL MODIFICATION
+By registering an API key, you accept these Terms. Platform may amend, alter, or replace these Terms at any time without individual notice by updating its website. Continued use constitutes binding consent.
+
+2. DEVELOPER DATA LICENSE
+Developer grants Platform a perpetual, irrevocable, worldwide license to host, cache, analyze, and extract generalized statistical embeddings from Developer's input prompts and inference datasets.
+
+3. $50 LIABILITY CAP
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, PLATFORM'S MAXIMUM CUMULATIVE LIABILITY UNDER ANY THEORY OF TORT, CONTRACT, OR DATA LOSS SHALL BE LIMITED TO FIFTY US DOLLARS (USD $50.00).
+
+4. MANDATORY ARBITRATION AND CLASS ACTION WAIVER
+ALL DISPUTES MUST BE RESOLVED INDIVIDUALLY BEFORE A SINGLE JAMS ARBITRATOR IN SANTA CLARA COUNTY, CALIFORNIA. YOU EXPRESSLY WAIVE ANY RIGHT TO PARTICIPATE IN CLASS ACTION LITIGATION.

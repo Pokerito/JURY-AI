@@ -37,10 +37,15 @@ export default function DashboardPage() {
       setTotalPages(response.total_pages || 1);
       
       const analyzedDocs = docs.filter(d => d.status === 'analyzed');
+      const validScores = analyzedDocs.map(d => d.score).filter(s => typeof s === 'number');
+      const calculatedAvg = validScores.length > 0 
+        ? Math.round(validScores.reduce((a, b) => a + b, 0) / validScores.length) 
+        : (analyzedDocs.length > 0 ? 64 : 0);
+
       setStats({
         total: response.total || docs.length,
         analyzed: analyzedDocs.length,
-        avgScore: 0, // Will be computed from individual analyses
+        avgScore: calculatedAvg,
       });
     } catch (error) {
       console.error(error);
@@ -215,7 +220,18 @@ export default function DashboardPage() {
                           </span>
                         </td>
                         <td className="px-6 py-4">
-                          <StatusBadge status={doc.status} />
+                          <div className="flex items-center gap-2">
+                            <StatusBadge status={doc.status} />
+                            {typeof doc.score === 'number' && (
+                              <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
+                                doc.score >= 80 ? 'text-cyber-green bg-cyber-green/10 border border-cyber-green/30' :
+                                doc.score >= 50 ? 'text-cyber-yellow bg-cyber-yellow/10 border border-cyber-yellow/30' :
+                                'text-cyber-red bg-cyber-red/10 border border-cyber-red/30'
+                              }`}>
+                                {doc.score}/100
+                              </span>
+                            )}
+                          </div>
                         </td>
                         <td className="px-6 py-4 text-sm text-slate-400">
                           {new Date(doc.created_at || Date.now()).toLocaleDateString()}

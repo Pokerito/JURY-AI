@@ -1,0 +1,18 @@
+PROPRIETARY SOFTWARE TECHNOLOGY IP ASSIGNMENT AND TRANSFER
+
+This Software Intellectual Property Assignment Agreement ("Agreement") is dated October 6, 2024, by Founder Technologies LLC ("Assignor") and Veloce Robotics Corp ("Assignee").
+
+1. ASSIGNMENT OF INTELLECTUAL PROPERTY
+Assignor hereby irrevocably sells, assigns, and transfers to Assignee all worldwide right, title, and interest in and to the computer vision algorithms, neural weights, and source code entitled "PathFinder v3.2".
+
+2. CONSIDERATION & ESCROW
+Assignee shall pay total consideration of $320,000 USD, of which $288,000 USD is delivered at closing, and $32,000 USD is deposited into neutral third-party escrow for 180 days to secure indemnification claims.
+
+3. REPRESENTATIONS AND WARRANTIES
+Assignor warrants that: (a) Assignor is the sole legal owner of the code; (b) the software does not contain copyleft (GPL) code; and (c) the technology does not infringe any third-party patent or copyright.
+
+4. LIABILITY CEILING
+Except for fraud, each party's aggregate indemnification liability shall not exceed the Total Consideration actually paid ($320,000 USD).
+
+5. GOVERNING LAW
+Governed by federal patent law and California state law.

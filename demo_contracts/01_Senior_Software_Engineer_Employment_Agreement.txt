@@ -1,0 +1,21 @@
+SENIOR SOFTWARE ENGINEER EMPLOYMENT AGREEMENT
+
+This Senior Software Engineer Employment Agreement ("Agreement") is entered into as of October 1, 2024, by and between Apex Cloud Solutions Inc., a Delaware corporation ("Employer"), and Alex Mercer ("Employee").
+
+1. POSITION AND RESPONSIBILITIES
+Employer hereby employs Employee as Senior Lead Systems Architect. Employee shall perform cloud infrastructure management, microservices engineering, and distributed backend scaling.
+
+2. COMPENSATION & BENEFITS
+Employer shall pay Employee an annual base salary of $165,000 USD, payable semi-monthly, subject to statutory tax withholdings. Employee shall be eligible for annual discretionary performance bonuses up to $25,000 USD.
+
+3. UNILATERAL TERMINATION NOTICE
+Employer may terminate Employee's employment at any time, with or without cause, upon twenty-four (24) hours prior notice. In contrast, Employee must provide at least sixty (60) days advance written notice prior to resignation.
+
+4. COMPREHENSIVE INTELLECTUAL PROPERTY SURRENDER
+Employee agrees that all inventions, discoveries, software code, scripts, designs, patents, and copyrightable works created, conceived, or reduced to practice by Employee during the entire duration of employment—whether created during business hours or off-duty hours, on Company property or on personal hardware—shall immediately become the sole and exclusive property of Employer.
+
+5. POST-EMPLOYMENT NON-COMPETE COVENANT
+For a period of thirty-six (36) continuous months following cessation of employment for any reason, Employee shall not directly or indirectly engage in, advise, invest in, or provide technical services to any enterprise providing cloud hosting, distributed computing, or SaaS infrastructure anywhere in the world. Violation shall trigger liquidated damages of $50,000 USD.
+
+6. CONFIDENTIAL INFORMATION
+Employee shall maintain strict secrecy regarding Employer's technical documentation, source code, and client rosters during and after employment.

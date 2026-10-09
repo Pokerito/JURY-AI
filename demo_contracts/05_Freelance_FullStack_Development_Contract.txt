@@ -1,0 +1,18 @@
+INDEPENDENT CONTRACTOR FREELANCE DEVELOPMENT AGREEMENT
+
+This Agreement is made on October 5, 2024, by BlueWave Marketing Agency LLC ("Client") and David Vance ("Contractor").
+
+1. SCOPE OF SERVICES
+Contractor shall build a custom Next.js and PostgreSQL e-commerce checkout flow as detailed in Exhibit A ("Deliverables").
+
+2. COMPENSATION & NET-60 PAYMENT
+Total contract fee is $22,000 USD, divided into three milestones. Invoices shall be payable by Client within sixty (60) days of receipt ("Net-60"). Client may withhold payment if deliverables fail to satisfy Client's subjective artistic standards.
+
+3. INTELLECTUAL PROPERTY TRANSFER
+Upon receipt of full and final compensation, Contractor assigns to Client all right, title, and copyright in and to the custom software code created specifically for this project.
+
+4. INDEMNITY & UNLIMITED LIABILITY
+Contractor agrees to indemnify, defend, and hold harmless Client, its officers, and affiliates from all losses, damages, legal fees, or patent disputes arising from Contractor's software deliverables or integrated open-source libraries, without monetary limitation.
+
+5. INDEPENDENT STATUS
+Contractor is an independent contractor, solely responsible for self-employment taxes, equipment, and insurance.

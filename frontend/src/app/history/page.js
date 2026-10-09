@@ -150,6 +150,16 @@ export default function HistoryPage() {
                     </div>
 
                     <div className="flex items-center gap-3 self-end md:self-center">
+                      {typeof doc.score === 'number' && (
+                        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${
+                          doc.score >= 80 ? 'text-cyber-green bg-cyber-green/15 border-cyber-green/30' :
+                          doc.score >= 50 ? 'text-cyber-yellow bg-cyber-yellow/15 border-cyber-yellow/30' :
+                          'text-cyber-red bg-cyber-red/15 border-cyber-red/30'
+                        }`}>
+                          Score: {doc.score}/100
+                        </span>
+                      )}
+
                       <span className={`px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border ${
                         doc.status === "analyzed"
                           ? "bg-cyber-green/15 text-cyber-green border-cyber-green/30"

@@ -1,0 +1,21 @@
+MUTUAL NON-DISCLOSURE AND CONFIDENTIALITY AGREEMENT
+
+This Mutual Non-Disclosure Agreement ("Agreement") is executed on October 2, 2024, by and between Quantum BioTech Labs Inc. ("Quantum") and Helix Pharma Therapeutics Corp. ("Helix").
+
+1. PURPOSE
+The parties desire to evaluate potential collaboration in molecular sequence synthesis and computational bio-modeling ("Authorized Purpose").
+
+2. CONFIDENTIAL INFORMATION DEFINITION
+"Confidential Information" refers to all proprietary scientific data, lab notes, clinical trial summaries, software source code, and chemical formulations marked confidential or reasonably understood to be proprietary.
+
+3. EXCLUSIONS FROM CONFIDENTIALITY
+Confidential Information does not include information that: (a) is or becomes publicly known without breach; (b) was already known to the receiving party prior to disclosure; (c) is independently developed without reference to disclosed data; or (d) is required to be disclosed by valid judicial subpoena.
+
+4. NON-DISCLOSURE & CARE STANDARD
+Each receiving party shall protect disclosed confidential materials using the same degree of care (not less than reasonable care) utilized for its own trade secrets and shall not use information beyond the Authorized Purpose.
+
+5. TERM AND SUNSET
+This Agreement shall govern disclosures for twelve (12) months. The confidentiality duties shall survive for three (3) years following disclosure.
+
+6. ATTORNEYS' FEES
+In the event of litigation arising under this Agreement, the prevailing party shall be entitled to recover reasonable attorneys' fees and court expenses from the non-prevailing party.

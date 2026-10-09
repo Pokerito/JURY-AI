@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import sys
 import hashlib
 import secrets
 import json
@@ -60,6 +61,19 @@ def init_db():
 
     # Pre-seed the 4 Project Admins
     seed_admins()
+
+    # Pre-seed 10 authentic demo contracts if fresh database
+    try:
+        root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+        if root_dir not in sys.path:
+            sys.path.insert(0, root_dir)
+        with get_db() as conn:
+            cnt = conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
+            if cnt < 5:
+                import seed_10_contracts
+                seed_10_contracts.seed()
+    except Exception as e:
+        print(f"Auto-seed note: {e}")
 
 def seed_admins():
     admin_team = [
@@ -224,27 +238,47 @@ def get_documents(user_id: str = None, page: int = 1, page_size: int = 20) -> di
     offset = (page - 1) * page_size
     with get_db() as conn:
         cursor = conn.cursor()
+        
+        # Look up Gaurav's ID so authentic demo contracts are accessible in all views
+        cursor.execute("SELECT id FROM users WHERE email = 'gjha5757@gmail.com'")
+        lead_row = cursor.fetchone()
+        lead_id = lead_row['id'] if lead_row else None
+
         if user_id:
-            cursor.execute("SELECT COUNT(*) as cnt FROM documents WHERE user_id = ? OR user_id IS NULL", (user_id,))
+            cursor.execute("""
+                SELECT COUNT(*) as cnt FROM documents 
+                WHERE user_id = ? OR user_id IS NULL OR (? IS NOT NULL AND user_id = ?)
+            """, (user_id, lead_id, lead_id))
             total = cursor.fetchone()['cnt']
             cursor.execute("""
-                SELECT id, filename, file_type, file_size, status, created_at
+                SELECT id, filename, file_type, file_size, status, created_at, score_json
                 FROM documents
-                WHERE user_id = ? OR user_id IS NULL
+                WHERE user_id = ? OR user_id IS NULL OR (? IS NOT NULL AND user_id = ?)
                 ORDER BY created_at DESC
                 LIMIT ? OFFSET ?
-            """, (user_id, page_size, offset))
+            """, (user_id, lead_id, lead_id, page_size, offset))
         else:
             cursor.execute("SELECT COUNT(*) as cnt FROM documents")
             total = cursor.fetchone()['cnt']
             cursor.execute("""
-                SELECT id, filename, file_type, file_size, status, created_at
+                SELECT id, filename, file_type, file_size, status, created_at, score_json
                 FROM documents
                 ORDER BY created_at DESC
                 LIMIT ? OFFSET ?
             """, (page_size, offset))
         rows = cursor.fetchall()
-        items = [dict(r) for r in rows]
+        items = []
+        for r in rows:
+            item = dict(r)
+            item['score'] = None
+            if item.get('score_json'):
+                try:
+                    s_data = json.loads(item['score_json'])
+                    item['score'] = s_data.get('score')
+                except Exception:
+                    pass
+            # Don't send heavy score_json string if not needed, just score
+            items.append(item)
     total_pages = max(1, (total + page_size - 1) // page_size)
     return {
         "items": items,

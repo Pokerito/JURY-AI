@@ -1,0 +1,18 @@
+STRATEGIC JOINT VENTURE AND CROSS-LICENSE MOU
+
+This Strategic Joint Venture Memorandum ("MOU") is entered into on October 7, 2024, by Solaria Clean Energy Corp. ("Solaria") and Horizon Grid Systems Inc. ("Horizon").
+
+1. PARTNERSHIP PURPOSE
+The parties intend to form a 50/50 Delaware Limited Liability Company ("JV Entity") to construct commercial grid-scale energy storage facilities.
+
+2. CAPITALIZATION
+Each party shall contribute $1,000,000 USD in initial cash equity, securing equal 50% voting membership interests.
+
+3. DEADLOCK RESOLUTION (SHOTGUN BUY-SELL)
+If the Board of Managers cannot achieve agreement on a Major Decision for forty-five (45) days, either party may invoke a Russian Roulette Buy-Sell notice stating a cash valuation per share. The receiving party must either purchase the initiating party's interest or sell its own interest at that stated price within fifteen (15) days.
+
+4. EXCLUSIVITY
+During the term of this MOU and for twelve (12) months following termination, neither party shall participate in competing utility-scale battery initiatives in North America.
+
+5. NON-BINDING NATURE
+Except for Sections 3, 4, and Governing Law, this MOU represents an expression of commercial intent.

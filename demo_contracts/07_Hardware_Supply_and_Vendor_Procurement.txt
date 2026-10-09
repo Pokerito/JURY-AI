@@ -1,0 +1,18 @@
+INDUSTRIAL EQUIPMENT SUPPLY & PROCUREMENT MASTER CONTRACT
+
+This Procurement Master Contract is entered into on October 6, 2024, by Precision Dynamics GmbH ("Supplier") and NorthStar Renewable Power Inc. ("Buyer").
+
+1. SCOPE OF PROCUREMENT
+Supplier shall manufacture and deliver eight (8) industrial planetary wind turbine gearboxes ("Equipment") according to Buyer's technical specifications.
+
+2. PRICE & INCOTERMS
+Total contract price is $580,000 USD. Delivery shall be executed DDP Port of Houston by January 15, 2025.
+
+3. LIQUIDATED DELAY DAMAGES
+If Supplier fails to deliver Equipment by the Shipment Deadline, Supplier shall pay Buyer liquidated damages equal to one percent (1%) of the total contract value ($5,800 USD) for each calendar day of delay, without limitation.
+
+4. BUYER CANCELLATION RIGHTS
+Buyer reserves the right to terminate this contract in whole or in part at any time for its convenience without liability for work-in-progress or customized raw steel materials acquired.
+
+5. PRODUCT WARRANTY
+Supplier warrants Equipment against defects in material and workmanship for twenty-four (24) months from commissioning.
