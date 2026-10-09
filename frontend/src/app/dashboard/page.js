@@ -75,14 +75,18 @@ export default function DashboardPage() {
     if (!selectedFile) return;
     setUploading(true);
     try {
-      await api.uploadDocument(selectedFile);
-      toast.success("Document uploaded successfully");
+      const res = await api.uploadDocument(selectedFile);
+      toast.success("Document uploaded successfully!");
       setIsUploadModalOpen(false);
       setSelectedFile(null);
-      fetchDocuments();
+      if (res && res.id) {
+        router.push(`/dashboard/${res.id}`);
+      } else {
+        fetchDocuments();
+      }
     } catch (error) {
       console.error(error);
-      toast.error("Upload failed. Please try again.");
+      toast.error(error.message || "Upload failed. Please try again.");
     } finally {
       setUploading(false);
     }

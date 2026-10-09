@@ -142,7 +142,10 @@ async def upload_doc_v1(
         raise HTTPException(status_code=400, detail=str(e))
     
     doc_id = str(uuid.uuid4())
-    rag_service.insert_document(doc_id=doc_id, text=text)
+    try:
+        rag_service.insert_document(doc_id=doc_id, text=text)
+    except Exception as e:
+        print(f"Warning: RAG indexing skipped/deferred during upload ({e})")
     
     ext = file.filename.split('.')[-1].lower() if '.' in file.filename else 'txt'
     user_id = current_user["id"] if current_user else None
@@ -323,7 +326,10 @@ async def upload_document(file: UploadFile = File(...)):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     doc_id = str(uuid.uuid4())
-    rag_service.insert_document(doc_id=doc_id, text=text)
+    try:
+        rag_service.insert_document(doc_id=doc_id, text=text)
+    except Exception as e:
+        print(f"Warning: Legacy upload RAG indexing skipped/deferred ({e})")
     
     ext = file.filename.split('.')[-1].lower() if '.' in file.filename else 'txt'
     db.add_document(

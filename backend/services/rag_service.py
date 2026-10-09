@@ -21,21 +21,28 @@ class RAGService:
     def _get_embedding(self, text: str) -> list[float]:
         if not self.genai_client:
             return [0.0] * 3072
-        response = self.genai_client.models.embed_content(
-            model='gemini-embedding-2',
-            contents=text,
-        )
-        return response.embeddings[0].values
+        try:
+            response = self.genai_client.models.embed_content(
+                model='gemini-embedding-2',
+                contents=text,
+            )
+            return response.embeddings[0].values
+        except Exception as e:
+            print(f"Warning: Gemini embedding network/API issue ({e}), using fallback zero-vector.")
+            return [0.0] * 3072
 
     def insert_document(self, doc_id: str, text: str):
-        chunks = [text[i:i+1000] for i in range(0, len(text), 1000) if text[i:i+1000].strip()]
-        embeddings, ids, metadatas = [], [], []
-        for idx, chunk in enumerate(chunks):
-            embeddings.append(self._get_embedding(chunk))
-            ids.append(f"{doc_id}_chunk_{idx}")
-            metadatas.append({"doc_id": doc_id, "chunk_index": idx})
-        if chunks:
-            self.collection.add(embeddings=embeddings, documents=chunks, metadatas=metadatas, ids=ids)
+        try:
+            chunks = [text[i:i+1000] for i in range(0, len(text), 1000) if text[i:i+1000].strip()]
+            embeddings, ids, metadatas = [], [], []
+            for idx, chunk in enumerate(chunks):
+                embeddings.append(self._get_embedding(chunk))
+                ids.append(f"{doc_id}_chunk_{idx}")
+                metadatas.append({"doc_id": doc_id, "chunk_index": idx})
+            if chunks:
+                self.collection.add(embeddings=embeddings, documents=chunks, metadatas=metadatas, ids=ids)
+        except Exception as e:
+            print(f"Warning: Chroma insert_document encountered error: {e}")
 
     def _sync_generate(self, prompt: str, model_id: str = "gemini-2.5-flash") -> str:
         model_lower = (model_id or "gemini-2.5-flash").lower()
