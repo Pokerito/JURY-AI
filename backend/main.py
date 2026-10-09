@@ -61,6 +61,8 @@ async def get_current_user(authorization: Optional[str] = Header(None)):
 
 # ── Base Health ──────────────────────────────────────────────────────────────
 @app.get("/")
+@app.get("/health")
+@app.get("/api/v1/health")
 def read_root():
     return {"status": "Jury-AI is running", "version": "2.0"}
 
