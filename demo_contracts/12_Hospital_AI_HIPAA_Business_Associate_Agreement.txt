@@ -1,0 +1,63 @@
+CLINICAL DIAGNOSTIC AI SaaS SERVICES & HIPAA BUSINESS ASSOCIATE AGREEMENT
+
+This CLINICAL DIAGNOSTIC AI SaaS SERVICES & HIPAA BUSINESS ASSOCIATE AGREEMENT (the "Agreement" or "BAA") is entered into as of January 15, 2025 (the "Effective Date"), by and between:
+
+COVERED ENTITY:
+St. Jude Memorial Healthcare System, a non-profit integrated healthcare hospital network organized under the laws of the Commonwealth of Massachusetts, with its primary medical campus at 100 Riverway Boulevard, Boston, MA 02115 ("Hospital" or "Covered Entity"),
+
+AND
+
+BUSINESS ASSOCIATE:
+AetherHealth Clinical Systems Inc., a healthcare technology corporation organized under the laws of Delaware, with its principal operations located at 222 Berkeley Street, 14th Floor, Boston, MA 02116 ("AetherHealth" or "Business Associate").
+
+RECITALS:
+WHEREAS, Covered Entity operates acute care hospitals, emergency centers, and radiology diagnostic departments processing confidential patient medical records;
+WHEREAS, Business Associate provides a proprietary cloud-based artificial intelligence diagnostic decision-support platform known as "AetherScan Neuro-Thoracic Suite" (the "Platform");
+WHEREAS, in providing services under this Agreement, Business Associate will create, receive, maintain, transmit, and process Protected Health Information ("PHI") and Electronic Protected Health Information ("ePHI") subject to the Health Insurance Portability and Accountability Act of 1996 ("HIPAA"), the Health Information Technology for Economic and Clinical Health Act ("HITECH"), and the Omnibus Rule of 2013 (45 C.F.R. Parts 160 and 164).
+
+NOW, THEREFORE, the Parties agree as follows:
+
+ARTICLE I. DEFINITIONS & SCOPE OF CLINICAL AI SERVICES
+1.1 Protected Health Information (PHI). "Protected Health Information" or "PHI" shall have the meaning given to such term in 45 C.F.R. § 160.103, limited to information created, received, maintained, or transmitted by Business Associate on behalf of Covered Entity.
+1.2 Clinical AI Platform. Covered Entity engages Business Associate to deploy the AetherScan AI Platform across Covered Entity's fourteen (14) clinical facilities to perform automated real-time triage and secondary diagnostic analysis of chest CT scans, brain MRI imaging, and digital pathology slides.
+
+ARTICLE II. OBLIGATIONS & PERMITTED USES OF BUSINESS ASSOCIATE
+2.1 Safeguards. Business Associate shall maintain industry-standard physical, technical, and administrative safeguards that reasonably and appropriately protect the confidentiality, integrity, and availability of ePHI, in full compliance with the HIPAA Security Rule (45 C.F.R. Part 164, Subpart C), including AES-256 encryption at rest and TLS 1.3 encryption in transit.
+2.2 Subcontractors. Business Associate shall ensure that any agent or subcontractor to whom it delegates PHI processing enters into a written agreement containing privacy and security restrictions no less protective than those set forth herein.
+
+ARTICLE III. CONTROVERSIAL DATA CLAUSES & EXPLOITATION RISKS (HIGH RISK)
+3.1 De-Identified PHI Commercialization. Notwithstanding anything to the contrary in this Agreement, Business Associate shall have the unilateral, perpetual, and royalty-free right to de-identify, scrub, and anonymize Covered Entity's patient imaging, clinical findings, and treatment metadata in accordance with the HIPAA Safe Harbor standard (45 C.F.R. § 164.514(b)). Business Associate shall own all right, title, and intellectual property interest in the resulting de-identified clinical datasets and may commercialize, sublicense, or sell aggregated predictive health analytics to third-party pharmaceutical conglomerates without compensation or notice to Covered Entity.
+3.2 Breaches & Incident Notification Timeframe (CRITICAL RISK). In the event Business Associate discovers a confirmed Security Incident, unauthorized exfiltration, or data breach involving unencrypted PHI, Business Associate shall notify Covered Entity in writing within forty-five (45) business days following forensic confirmation of the incident.
+[NOTE: This 45-day delay is a critical compliance risk; standard healthcare industry covenants require notice within 24 to 72 hours to satisfy federal reporting mandates].
+
+ARTICLE IV. MEDICAL MALPRACTICE DISCLAIMER & LIABILITY SHIFT (CRITICAL RISK)
+4.1 Sole Clinical Responsibility on Attending Physicians. Covered Entity acknowledges and agrees that the AetherScan Platform constitutes a secondary decision-support assistive tool only, and does not provide medical diagnoses or replace physician clinical judgment. Covered Entity and its attending physicians bear sole and exclusive medical-legal liability for all clinical outcomes, misdiagnoses, missed lesions, and adverse patient events.
+4.2 Covered Entity Hold-Harmless. Covered Entity shall defend, indemnify, and hold harmless Business Associate and its software developers against any patient medical malpractice claims, wrongful death actions, or regulatory investigations arising from patient care where the Platform was utilized.
+4.3 Severe Limitation of Vendor Liability. BUSINESS ASSOCIATE'S TOTAL AGGREGATE MONETARY LIABILITY TO COVERED ENTITY UNDER THIS AGREEMENT AND BAA FOR ALL CLAIMS OF ANY KIND, INCLUDING DATA BREACHES, REGULATORY FINES, AND HIPAA ENFORCEMENT ACTIONS, SHALL BE STRICTLY LIMITED TO THE AGGREGATE FEES PAID BY COVERED ENTITY TO BUSINESS ASSOCIATE IN THE PRECEDING THREE (3) MONTHS, NOT TO EXCEED FORTY-FIVE THOUSAND UNITED STATES DOLLARS ($45,000 USD).
+
+ARTICLE V. FINANCIAL TERMS & PLATFORM SUBSCRIPTION
+5.1 Platform Fees. Covered Entity shall pay an annual enterprise SaaS subscription fee of One Hundred Eighty Thousand United States Dollars ($180,000 USD), payable in quarterly installments of Forty-Five Thousand Dollars ($45,000 USD) each.
+5.2 Liquidated Damages for Willful Breach. In the event of an intentional or grossly negligent unauthorized disclosure of Covered Entity PHI by Business Associate personnel, Business Associate shall pay liquidated damages of Two Hundred Fifty Thousand United States Dollars ($250,000 USD) per incident, without prejudice to Covered Entity's other equitable remedies.
+
+ARTICLE VI. TERM, TERMINATION & PHI DISPOSITION
+6.1 Term. This Agreement shall be effective for three (3) years from the Effective Date, subject to annual review.
+6.2 Termination for Cause. Covered Entity may terminate immediately if Business Associate fails to cure a material breach of HIPAA within fifteen (15) days of written notice.
+6.3 Return or Destruction of PHI. Upon termination, Business Associate shall, within thirty (30) days, return or securely destroy all PHI in its possession and certify such cryptographic purge in writing.
+
+ARTICLE VII. GOVERNING LAW & JURISDICTION
+7.1 Governing Law. This Agreement shall be governed by the laws of the Commonwealth of Massachusetts and applicable federal healthcare laws, including 45 C.F.R. Parts 160 and 164.
+7.2 Venue. The state and federal courts located in Boston, Massachusetts shall have exclusive jurisdiction over any proceeding arising out of this Agreement.
+
+IN WITNESS WHEREOF, the Parties hereto have caused this Agreement and BAA to be executed by their authorized officers.
+
+ST. JUDE MEMORIAL HEALTHCARE SYSTEM (COVERED ENTITY)
+By: ___________________________________
+Name: Dr. Arthur Pendelton, M.D., FACP
+Title: Chief Medical Officer & VP Clinical Governance
+Date: January 15, 2025
+
+AETHERHEALTH CLINICAL SYSTEMS INC. (BUSINESS ASSOCIATE)
+By: ___________________________________
+Name: Sophia Lin, M.S., CISM
+Title: Chief Operating Officer & Data Privacy Officer
+Date: January 15, 2025

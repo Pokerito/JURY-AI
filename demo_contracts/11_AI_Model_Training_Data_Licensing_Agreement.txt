@@ -1,0 +1,69 @@
+AI FOUNDATION MODEL TRAINING DATA & CONTENT REPOSITORY LICENSE AGREEMENT
+
+This AI FOUNDATION MODEL TRAINING DATA & CONTENT REPOSITORY LICENSE AGREEMENT (the "Agreement") is entered into as of November 14, 2024 (the "Effective Date"), by and between:
+
+LICENSOR:
+Chronos Global Media LLC, a Delaware limited liability company, having its principal place of business at 750 Third Avenue, New York, NY 10017 ("Chronos Media" or "Licensor"),
+
+AND
+
+LICENSEE:
+NeuralNexus Artificial Intelligence Corp., a Delaware corporation, having its principal place of business at 548 Market Street, Suite 82000, San Francisco, CA 94104 ("NeuralNexus" or "Licensee").
+
+Licensor and Licensee are each referred to individually as a "Party" and collectively as the "Parties."
+
+RECITALS:
+WHEREAS, Licensor is the lawful owner and publisher of an extensive proprietary digital content archive, comprising over 1,200,000 long-form editorial articles, investigative analyses, financial dossiers, and curated journalistic publications published between 2008 and 2024 (collectively, the "Proprietary Corpus");
+WHEREAS, Licensee designs, pre-trains, and commercializes multimodal large language models and frontier generative neural architectures ("Foundation Models");
+WHEREAS, Licensee desires to license the Proprietary Corpus to ingest, tokenize, pre-train, fine-tune, evaluate, and benchmark its artificial intelligence systems, and Licensor is willing to grant such license under the terms and conditions set forth herein.
+
+NOW, THEREFORE, the Parties agree as follows:
+
+SECTION 1. GRANT OF LICENSE & TRAINING RIGHTS
+1.1 Training & Ingestion Rights. Licensor hereby grants to Licensee a non-exclusive, worldwide, transferable (solely to affiliates), sublicensable license to:
+(a) Access, ingest, extract, parse, tokenize, clean, and vectorize the Proprietary Corpus;
+(b) Incorporate the vectorized embeddings and semantic patterns of the Proprietary Corpus into the pre-training datasets, reinforcement learning with human feedback (RLHF) pipelines, direct preference optimization (DPO) datasets, and inference checkpoints of Licensee's Foundation Models;
+(c) Host and cache high-speed working copies of the Proprietary Corpus on Licensee's distributed GPU compute clusters, whether hosted in private datacenters or on public hyperscale clouds (including AWS, Azure, and Google Cloud).
+
+SECTION 2. FINANCIAL CONSIDERATIONS & ROYALTIES
+2.1 Annual Upfront Licensing Fee. Licensee shall pay to Licensor an annual upfront licensing fee of Four Hundred Eighty Thousand United States Dollars ($480,000 USD) within thirty (30) days of the Effective Date, and on each twelve-month anniversary thereof during the Term.
+2.2 Token-Based Output Surcharge. For user queries served through Licensee's enterprise API that produce verified direct citations attributing Licensor's publications, Licensee shall remit a micro-royalty of $0.0004 per 1,000 output tokens.
+2.3 Unilateral Royalty Suspension for Open-Weight Releases. In the event Licensee releases model weights or derived checkpoints under an open-source or open-weights license (e.g., Apache 2.0, MIT, or Llama Community License), all royalty obligations under Section 2.2 shall automatically terminate without notice or penalty.
+
+SECTION 3. DATA DELIVERY & REPOSITORIES
+3.1 Delivery Protocol. Licensor shall furnish the Proprietary Corpus via encrypted Amazon S3 object buckets in compressed JSONL format, incorporating full text, publication metadata, author bylines, and associated taxonomy tags.
+3.2 Quarterly Refreshes. Licensor shall provide quarterly supplemental delta updates containing all newly published editorial articles throughout the Term.
+
+SECTION 4. INTELLECTUAL PROPERTY & PERPETUAL MODEL RETENTION (HIGH RISK)
+4.1 Retention of Model Weights & Embeddings. Licensor expressly acknowledges and agrees that once the Proprietary Corpus has been ingested, tokenized, and integrated into the weights, biases, attention layers, latent representations, and parameter matrices of Licensee's Foundation Models, such weights and parameters become mathematically irreversible and non-extractable.
+4.2 Irrevocable Model Ownership. Licensee shall own all right, title, and interest in and to all Foundation Models, checkpoint snapshots, fine-tuned weights, embeddings, synthetic data generated therefrom, and commercial derivative software.
+4.3 Permanent Exemption from Deletion. Under no circumstances, including upon expiration or early termination of this Agreement for any reason (including uncured breach by Licensee), shall Licensee be obligated to retrain any model, purge checkpoint weights, or delete mathematical parameter matrices derived from or trained upon Licensor's Proprietary Corpus.
+
+SECTION 5. EXCLUSIVITY & COMPETITIVE RESTRICTIONS (MEDIUM RISK)
+5.1 Frontier AI Restraint. During the active Term and for a period of twenty-four (24) months following termination, Licensor covenants that it shall not license, provide, or make available the Proprietary Corpus (in bulk or via automated scraping APIs) to any frontier generative AI research laboratory or foundation model developer competing directly with Licensee within the United States or the European Union.
+
+SECTION 6. INDEMNIFICATION & DISPROPORTIONATE LIABILITY (CRITICAL RISK)
+6.1 Licensor Intellectual Property Indemnity. Licensor agrees to defend, indemnify, and hold harmless Licensee, its officers, directors, employees, and cloud infrastructure partners against any third-party claims, lawsuits, or regulatory penalties alleging that the Proprietary Corpus infringes any copyright, trademark, moral right, or privacy right. Licensor's indemnification obligation under this Section shall be uncapped and without dollar limitation.
+6.2 Limitation of Licensee Liability. TO THE MAXIMUM EXTENT PERMITTED UNDER APPLICABLE LAW, LICENSEE'S AGGREGATE CUMULATIVE LIABILITY ARISING OUT OF OR RELATING TO THIS AGREEMENT, REGARDLESS OF THE LEGAL THEORY (WHETHER CONTRACT, TORT, OR STATUTORY), SHALL NOT EXCEED ONE THOUSAND UNITED STATES DOLLARS ($1,000 USD). LICENSEE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, OR PUNITIVE DAMAGES.
+
+SECTION 7. TERM & TERMINATION
+7.1 Term. This Agreement shall commence on the Effective Date and continue for an initial period of three (3) years (the "Term"), automatically renewing for successive one (1) year periods unless either Party provides sixty (60) days prior written notice of non-renewal.
+7.2 Termination for Cause. Either Party may terminate upon thirty (30) days written notice in the event of a material breach that remains uncured at the expiration of such thirty-day period.
+
+SECTION 8. GOVERNING LAW & DISPUTE RESOLUTION
+8.1 Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of Delaware, without giving effect to conflict of laws principles.
+8.2 Arbitration. Any dispute arising under or in connection with this Agreement shall be resolved through confidential, binding commercial arbitration administered by the American Arbitration Association (AAA) in Wilmington, Delaware.
+
+IN WITNESS WHEREOF, the Parties hereto have caused this Agreement to be executed by their duly authorized representatives.
+
+CHRONOS GLOBAL MEDIA LLC (LICENSOR)
+By: ___________________________________
+Name: Marcus Sterling
+Title: Chief Executive Officer & Publisher
+Date: November 14, 2024
+
+NEURALNEXUS ARTIFICIAL INTELLIGENCE CORP. (LICENSEE)
+By: ___________________________________
+Name: Dr. Elena Vance
+Title: Chief Research Officer & VP Engineering
+Date: November 14, 2024
