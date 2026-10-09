@@ -55,6 +55,18 @@ export default function DocumentDetailPage() {
     try {
       const docData = await api.getDocument(docId);
       setDoc(docData);
+
+      // Instant 1-click display if document is already analyzed (zero waiting)
+      if (docData && (docData.risk_score || docData.summary || docData.entities)) {
+        if (docData.risk_score) setRiskData(docData.risk_score);
+        if (docData.summary) setSummary(docData.summary);
+        if (docData.entities) setEntities(docData.entities);
+        setLoadingSections({ risk: false, summary: false, entities: false });
+        setLoading(false);
+        return;
+      }
+
+      // If document is unanalyzed, trigger initial fetch
       fetchAllAnalysis();
     } catch (error) {
       console.error(error);
@@ -115,14 +127,22 @@ export default function DocumentDetailPage() {
     setAnalyzing(true);
     const chosenModel = getSelectedModel();
     try {
-      await api.triggerAnalysis(docId, chosenModel);
-      toast.success(`Analysis complete (${chosenModel})!`);
-      await fetchAllAnalysis();
+      const res = await api.triggerAnalysis(docId, chosenModel);
+      toast.success(`Analysis complete!`);
+      if (res) {
+        if (res.risk_score) setRiskData(res.risk_score);
+        if (res.summary) setSummary(res.summary);
+        if (res.entities) setEntities(res.entities);
+        setDoc(prev => prev ? { ...prev, status: 'analyzed' } : prev);
+      } else {
+        await fetchAllAnalysis();
+      }
     } catch (error) {
       console.error(error);
       toast.error("Analysis failed");
     } finally {
       setAnalyzing(false);
+      setLoadingSections({ risk: false, summary: false, entities: false });
     }
   };
 

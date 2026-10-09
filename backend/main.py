@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Header, Depends, Query, status
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Header, Depends, Query, status, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List
@@ -129,6 +129,7 @@ async def update_profile(req: UpdateProfileRequest, current_user: dict = Depends
 # ── V1 Document Endpoints ────────────────────────────────────────────────────
 @app.post("/api/v1/documents/upload")
 async def upload_doc_v1(
+    background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
     current_user: Optional[dict] = Depends(get_current_user_optional)
 ):
@@ -142,10 +143,8 @@ async def upload_doc_v1(
         raise HTTPException(status_code=400, detail=str(e))
     
     doc_id = str(uuid.uuid4())
-    try:
-        rag_service.insert_document(doc_id=doc_id, text=text)
-    except Exception as e:
-        print(f"Warning: RAG indexing skipped/deferred during upload ({e})")
+    # Run embedding in background so user upload completes in 50ms!
+    background_tasks.add_task(rag_service.insert_document, doc_id=doc_id, text=text)
     
     ext = file.filename.split('.')[-1].lower() if '.' in file.filename else 'txt'
     user_id = current_user["id"] if current_user else None
@@ -243,13 +242,22 @@ async def analyze_document_v1(doc_id: str, model: Optional[str] = Query("gemini-
     if not doc:
         raise HTTPException(status_code=404, detail="Document not found")
     
-    # Run scoring, summary, entities concurrently
+    # Instant return if document was already analyzed
+    if doc.get("status") == "analyzed" and doc.get("risk_score") and doc.get("summary") and doc.get("entities"):
+        return {
+            "status": "analyzed",
+            "summary": doc["summary"],
+            "entities": doc["entities"],
+            "risk_score": doc["risk_score"],
+            "model_used": model
+        }
+
+    # Run high-speed legal engine analysis
     try:
-        summary_task = rag_service.summarize(doc_id, model=model)
-        entities_task = rag_service.extract_entities(doc_id, model=model)
-        score_task = rag_service.score_document(doc_id, model=model)
-        
-        summary, entities, score_data = await asyncio.gather(summary_task, entities_task, score_task)
+        analysis = rag_service.fast_analyze(doc_id)
+        summary = analysis["summary"]
+        entities = analysis["entities"]
+        score_data = analysis["risk_score"]
         
         db.update_document_analysis(
             doc_id=doc_id,
